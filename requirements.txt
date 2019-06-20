@@ -1,0 +1,4 @@
+pil-compat==1.0.0
+Pillow==6.0.0
+pqdict==1.0.0
+six==1.12.0
