@@ -33,15 +33,19 @@ def neighbours(qt, tile):
 
 def make_adjacent_function(quadtree):
     """
-    Return function suitable as adjacent function as parameter for call to A*
+    Return a function suitable as adjacent function as parameter to A*
     
     this wrapper function captures the quadtree in a closure of the adjacent function
     """
-    def adjacent(tile):
+    def adjacent(node):
+        """
+        Return nodes (Tiles) adjacent to node
+        adjacent nodes are not impassable and can be directly reached from node
+        """
         a = []
-        for neighbour in neighbours(quadtree, tile):
+        for neighbour in neighbours(quadtree, node):
             assert neighbour.childs is None        # must be leaf node
-            if neighbour.color != IMPASSABLE:
+            if neighbour != node and neighbour.color != IMPASSABLE:
                 a.append(neighbour)
 
         return a
